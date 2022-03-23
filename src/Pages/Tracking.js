@@ -5,6 +5,9 @@ import ButtonAppBar from '../Components/AppBar';
 import Geolocation from '@react-native-community/geolocation';
 import IconButton from '@mui/material/IconButton';
 import AssistantDirectionIcon from '@mui/icons-material/AssistantDirection';
+import Geocoder from 'react-native-geocoding';
+import Card from '@mui/material/Card';
+
 import Button from '@mui/material/Button';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
@@ -58,6 +61,13 @@ function Map (props) {
         lng:VBLocation.Lng,
     };
    
+    let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ VBLocation.Lat+","+ VBLocation.Lng+"&key=AIzaSyCfiQehDgjsdqvj9VD2-lT8iIxG0kUrTkA";
+    fetch(url)
+        .then(Response=>Response.json())
+        .then(data =>{
+            console.log(data);
+        })
+    
     return (
         <div>
 
@@ -74,7 +84,7 @@ function Map (props) {
             >
          <div id='dirPlace' style={{
              position: 'absolute',
-             bottom: '0px',
+             bottom: '-5px',
              height: '25vh',
              width:'100vw'
          }}>
@@ -91,6 +101,17 @@ function Map (props) {
                 }}
                     />
         </IconButton>
+
+        <Card variant="outlined" style ={{
+            width:'250px',
+            height:'100px',
+            marginLeft: '30px'
+        }}>
+                      
+    
+            card
+        </Card>
+
          </div>
         
 
